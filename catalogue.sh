@@ -1,6 +1,8 @@
 cp catalogue.service /etc/systemd/system/catalogue.service
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 
+yum intsall unzip -y
+
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 yum install nodejs -y
 useradd roboshop
