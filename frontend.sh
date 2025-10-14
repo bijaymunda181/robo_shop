@@ -1,4 +1,4 @@
-log=/tem/roboshop.log
+log=/tmp/roboshop.log
  echo -e "\e[33m<<<<<<<< install nginux >>>>>>>>>>>\e[0m"
 yum install nginx -y &>>${log}
  echo -e "\e[31m<<<<<<< copy nginx-roboshop.conf file\e[0m"
