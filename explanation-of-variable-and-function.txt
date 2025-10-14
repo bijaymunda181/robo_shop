@@ -1,0 +1,122 @@
+🧱 First — What is a Variable?
+
+Think of a variable like a container or box where you store a value — such as a name, number, or path — so that you can use it later.
+
+Example:
+#!/bin/bash
+
+name="Bijay"
+echo "Hello $name, welcome!"
+
+
+🟢 Explanation:
+
+name="Bijay" → you stored “Bijay” inside the variable name.
+
+$name → means “use the value inside that box”.
+
+So, the output will be:
+
+Hello Bijay, welcome!
+
+Why use variables?
+
+Because if you use a value many times (like a folder path), you don’t want to change it everywhere — just change it in one place.
+
+#!/bin/bash
+
+backup_dir="/var/backups"
+cp file.txt "$backup_dir"
+echo "File saved in $backup_dir"
+
+
+If tomorrow the backup path changes, you only need to update once.
+
+⚙️ Second — What is a Function?
+
+A function is like a mini program inside your script that does one job.
+You write it once, and you can call it many times.
+
+Example:
+#!/bin/bash
+
+say_hello() {
+    echo "Hello, Bijay!"
+}
+
+# Call the function
+say_hello
+say_hello
+
+
+🟢 Explanation:
+
+say_hello() → this is the function name.
+
+Inside { } you write the commands you want it to do.
+
+Every time you call say_hello, it runs those commands.
+
+So the output will be:
+
+Hello, Bijay!
+Hello, Bijay!
+
+🧩 Combine Variables and Functions
+
+Here’s how they work together:
+
+#!/bin/bash
+
+name="Bijay"
+
+greet() {
+    echo "Hello $name, have a great day!"
+}
+
+greet
+
+
+🟢 Output:
+
+Hello Bijay, have a great day!
+
+
+Now if you change:
+
+name="Amit"
+
+
+and run again — the output automatically updates.
+
+💡 Simple Real-Life Example
+
+Let’s say you want to create a backup of a folder every day.
+
+Without variables/functions:
+
+#!/bin/bash
+cp -r /home/bijay/data /var/backups/
+echo "Backup done."
+cp -r /home/bijay/data /var/backups/
+echo "Backup done."
+
+
+😓 — Repeated lines!
+
+With variables/functions (DRY way):
+
+#!/bin/bash
+
+SOURCE="/home/bijay/data"
+DEST="/var/backups"
+
+backup() {
+    cp -r "$SOURCE" "$DEST"
+    echo "Backup done from $SOURCE to $DEST"
+}
+
+backup
+
+
+✅ Cleaner, reusable, and easy to change later.
