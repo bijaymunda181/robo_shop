@@ -1,6 +1,5 @@
- echo -e "\e[31m<<<<<<<< install nginux >>>>>>>>>>>\e[0m"
+ echo -e "\e[33m<<<<<<<< install nginux >>>>>>>>>>>\e[0m"
 yum install nginx -y
-
  echo -e "\e[31m<<<<<<< copy nginx-roboshop.conf file\e[0m"
 cp nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf
 
