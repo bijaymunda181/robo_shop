@@ -29,6 +29,24 @@ func_systemd(){
   systemctl restart ${component} &>>${log}
 }
 
+func_schema_setup(){
+  if [ "${schema_type}" == "mongodb" ]; then
+    echo -e "\e[36m>>>>>>>>>>  Install Mongo Client  <<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
+    yum install mongodb-org-shell -y &>>${log}
+
+    echo -e "\e[36m>>>>>>>>>>  Load User Schema  <<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
+    mongo --host mongodb.rdevopsb72.online </app/schema/${component}.js &>>${log}
+  fi
+
+  if ["${schema_type}" == "mysql"]; then
+    echo -e "\e[36m>>>>>>>>>>>>>>>>>>  Install MySQl client    <<<<<<<<<<<<<<<<\e[0m"
+    yum install mysql -y &>>${log}
+    echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Load schema    <<<<<<<<<<<<<<<<\e[0m"
+    mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
+    fi
+
+}
+
 func_nodejs() {
     log=/tmp/roboshop.log
 
@@ -49,11 +67,7 @@ func_appreq
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Download NodeJS Dependencies   <<<<<<<<<<<<<<<<\e[0m"
 npm install &>>${log}
 
-echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Install mongo client   <<<<<<<<<<<<<<<<\e[0m"
-yum install mongodb-org-shell -y &>>${log}
-
-echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Load user schema   <<<<<<<<<<<<<<<<\e[0m"
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/${component}.js &>>${log}
+func_schema_setup
 
 func_systemd
 }
@@ -70,11 +84,7 @@ echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Build ${component} service    <<<<<<<<<<<<<<
 mvn clean package &>>${log}
 mv target/${component}s-1.0.jar ${component}.jsr &>>${log}
 
-echo -e "\e[36m>>>>>>>>>>>>>>>>>>  Install MySQl client    <<<<<<<<<<<<<<<<\e[0m"
-yum install mysql -y &>>${log}
-echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Load schema    <<<<<<<<<<<<<<<<\e[0m"
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
-
+func_schema_setup
 
 func_systemd
 }
