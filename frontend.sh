@@ -31,5 +31,5 @@ echo $?
 
  echo -e "\e[33m <<<<<<<<<<<<<<<<<<<<<<<<     start and enable the nginx service     >>>>>>>>>>>>>>>>>>>>>>\e[0m"
 systemctl enable nginx &>>${log}
-systemctl restart nginx &>>${log
+systemctl restart nginx &>>${log}
 echo $?
