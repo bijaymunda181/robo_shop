@@ -38,12 +38,14 @@ func_schema_setup(){
     mongo --host mongodb.rdevopsb72.online </app/schema/${component}.js &>>${log}
   fi
 
-  if ["${schema_type}" == "mysql"]; then
-    echo -e "\e[36m>>>>>>>>>>>>>>>>>>  Install MySQl client    <<<<<<<<<<<<<<<<\e[0m"
-    yum install mysql -y &>>${log}
-    echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Load schema    <<<<<<<<<<<<<<<<\e[0m"
-    mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
-    fi
+if [ "${schema_type}" == "mysql" ]; then
+  echo -e "\e[36m>>>>>>>>>>  Install MySQL Client  <<<<<<<<<<\e[0m"
+  yum install mysql -y &>>${log}
+
+  echo -e "\e[36m>>>>>>>>>>  Load Schema  <<<<<<<<<<\e[0m"
+  mysql -h mysql.rdevopsb72.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
+fi
+
 
 }
 
