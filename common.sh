@@ -77,7 +77,7 @@ mv target/${component}s-1.0.jar ${component}.jsr &>>${log}
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>  Install MySQl client    <<<<<<<<<<<<<<<<\e[0m"
 yum install mysql -y &>>${log}
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Load schema    <<<<<<<<<<<<<<<<\e[0m"
-mysql -h mysql.rdevopsb72.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
 
 
 func_systemd
