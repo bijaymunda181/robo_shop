@@ -1,3 +1,5 @@
+log=/tmp.roboshop.log
+
 func_appreq(){
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   creating application user   <<<<<<<<<<<<<<<<\e[0m"
 useradd roboshop &>>${log}
@@ -59,23 +61,23 @@ func_systemd
 
 func_java() {
   echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Create ${component}   <<<<<<<<<<<<<<<<\e[0m"
-cp ${component}.service /etc/systemd/system/${component}.service
+cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Install mongo client   <<<<<<<<<<<<<<<<\e[0m"
-yum install unzip -y
+yum install unzip -y &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Install Maven    <<<<<<<<<<<<<<<<\e[0m"
-yum install maven -y
+yum install maven -y &>>${log}
 
 func_appreq
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Build ${component} service    <<<<<<<<<<<<<<<<\e[0m"
-mvn clean package
-mv target/${component}s-1.0.jar ${component}.jsr
+mvn clean package &>>${log}
+mv target/${component}s-1.0.jar ${component}.jsr &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>  Install MySQl client    <<<<<<<<<<<<<<<<\e[0m"
-yum install mysql -y
+yum install mysql -y &>>${log}
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Load schema    <<<<<<<<<<<<<<<<\e[0m"
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/${component}.sql
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
 
 func_systemd
 }
