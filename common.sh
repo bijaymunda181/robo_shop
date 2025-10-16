@@ -47,3 +47,4 @@ echo -e "\e[36m>>>>>>>>>>>>>>>>>>   start user service   <<<<<<<<<<<<<<<<\e[0m"
 systemctl daemon-reload &>>${log}
 systemctl enable ${component} &>>${log}
 systemctl restart ${component} &>>${log}
+}
