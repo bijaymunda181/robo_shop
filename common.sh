@@ -2,11 +2,12 @@ log=/tmp.roboshop.log
 
 
 func_exit_status() {
-  if [$? -eq 0]; then
+  if [ $? -eq 0 ]; then
     echo -e "\e[32m SUCCESS \e[0m"
     else
       echo -e "\e[31m FALURE \e[0m"
-      fi
+
+     fi
 }
 func_appreq(){
  echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Create ${component}   <<<<<<<<<<<<<<<<\e[0m"
@@ -15,7 +16,7 @@ func_exit_status
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   creating application user   <<<<<<<<<<<<<<<<\e[0m"
 id roboshop &>>${log}
-if [$? -ne 0]; then
+if [ $? -ne 0 ]; then
 useradd roboshop &>>${log}
 fi
 func_exit_status
