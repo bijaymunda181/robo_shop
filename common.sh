@@ -80,7 +80,7 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
 func_exit_status
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   installing unzip command   <<<<<<<<<<<<<<<<\e[0m"
-yum intasll unzip -y &>>${log}
+yum install unzip -y &>>${log}
 func_exit_status
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   install  NodeJS Repos   <<<<<<<<<<<<<<<<\e[0m"
