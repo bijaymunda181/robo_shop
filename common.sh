@@ -1,5 +1,6 @@
 log=/tmp.roboshop.log
 
+
 func_exit_status() {
   if [$? eq 0]; then
     echo -e "\e[m32m SUCCESS \e[0m"
