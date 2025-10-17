@@ -24,7 +24,7 @@ func_exit_status
 
  echo -e "\e[36m<<<<<<<<<<<<<<<<<<<<   go to html directory     >>>>>>>>>>>>>>>\e[0m"
 cd /usr/share/nginx/html &>>${log}
-echo $?
+func_exit_status
 
  echo -e "\e[36m <<<<<<<<<<<<<<<<<<<<<<     unzip frontend.zip file    >>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
 unzip /tmp/frontend.zip &>>${log}
