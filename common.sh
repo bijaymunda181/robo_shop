@@ -2,10 +2,10 @@ log=/tmp.roboshop.log
 
 
 func_exit_status() {
-  if [$? eq 0]; then
-    echo -e "\e[m32m SUCCESS \e[0m"
+  if [$? -eq 0]; then
+    echo -e "\e[32m SUCCESS \e[0m"
     else
-      echo -e "\e[m31 FALURE \e[0m"
+      echo -e "\e[31m FALURE \e[0m"
       fi
 }
 func_appreq(){
