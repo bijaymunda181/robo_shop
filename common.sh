@@ -14,7 +14,10 @@ cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 func_exit_status
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   creating application user   <<<<<<<<<<<<<<<<\e[0m"
+id roboshop &>>${log}
+if [$? -ne 0]; then
 useradd roboshop &>>${log}
+fi
 func_exit_status
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   cleanup existing Application content    <<<<<<<<<<<<<<<<<\e[0m"
