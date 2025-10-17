@@ -131,6 +131,7 @@ echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Build ${component}    <<<<<<<<<<<<<<<<\e[0m"
 func_exit_status
 
 func_appreq
+sed -i "s/rabbitmq_app_password/${rabbitmq_app_password}/" /ect/systemd/system/${component},service
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>   Build ${component}     <<<<<<<<<<<<<<<<\e[0m"
   pip3.6 install -r requirements.txt &>>${log}
