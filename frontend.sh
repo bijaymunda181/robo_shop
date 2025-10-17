@@ -1,7 +1,7 @@
 source common.sh
 
  echo -e "\e[36m<<<<<<<< install nginx >>>>>>>>>>>\e[0m"
-yum install nginx -y
+yum install nginx -y &>>${log}
 func_exit_status
 
 
